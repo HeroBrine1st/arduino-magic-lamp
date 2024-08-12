@@ -1,3 +1,5 @@
+#define HUE_SENSITIVITY 2 // 1/x, lower is more sensitive
+
 void gesturesTask() {
   static uint32_t tmr;
   // 20 герц если используем расстояние, иначе 50
@@ -76,19 +78,25 @@ void gesturesTask() {
       if(!was_hold) {
         was_hold = true;
       }
-      // смещение текущей настройки как оффсет + (текущее расстояние - расстояние начала)
-      int val = offset_v + (dist_f - offset_d);
+
+      int val;
+
       if(gest.clicks == 1) {
+        val = (dist_f - offset_d);
+
         switch(data.mode) {
           case 0:
           case 2:
-            val = val % 766 + ((val < 0) ? 766 : 0);
+            // lower sensitivity
+            val = offset_v + val / HUE_SENSITIVITY;
+            val = (val) % 256 + ((val < 0) ? 256 : 0);
             break;
           case 1:
-            val = constrain(val, 0, 1428);
+            val = constrain(offset_v + val, 0, 1428);
         }
       } else {
-        val = constrain(val, 0, 255);
+        // смещение текущей настройки как оффсет + (текущее расстояние - расстояние начала)
+        val = constrain(offset_v + (dist_f - offset_d), 0, 255);
       }
       
       // применяем

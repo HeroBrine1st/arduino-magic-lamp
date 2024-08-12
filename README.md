@@ -34,4 +34,8 @@ This firmware supports connecting a LED to PULSE_PIN (13 by default), which turn
 - Removed GRGB, dropped support of RGB LED strips
 - Added LED connected to PULSE_PIN, which is on when there's any signal from rangefinder
 
+# Settings
 
+Files fireEffect.ino, gesturesEffect.ino and brightnessTask.ino have settings in start of file.
+
+There's other settings within some files, but changing those unknowingly isn't recommended.

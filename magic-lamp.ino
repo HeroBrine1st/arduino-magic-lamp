@@ -68,7 +68,7 @@ bool renderEffect() {
 
   switch(data.mode) {
     case 0:
-      needsOutput = hueEffect(data.value[0] / 3, prevMode != 0);
+      needsOutput = hueEffect(data.value[0], prevMode != 0);
       prevMode = 0;
       break;
     case 1:
@@ -76,7 +76,7 @@ bool renderEffect() {
       prevMode = 1;
       break;
     case 2:
-      needsOutput = fireEffect(data.value[2] / 3, prevMode != 2);
+      needsOutput = fireEffect(data.value[2], prevMode != 2);
       prevMode = 2;
       break;
   }
