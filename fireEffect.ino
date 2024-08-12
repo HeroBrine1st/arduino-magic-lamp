@@ -22,13 +22,18 @@ bool fireEffect(uint8_t value, bool forceRender) {
   static int counter;
 
   // двигаем пламя
-  if (millis() - prevTime > 20 || forceRender) {
+  if (millis() - prevTime > 20) {
     prevTime = millis();
+    counter += 20;
+    forceRender = true;
+  }
+
+  if(forceRender) {
     for(int i = 0; i < LED_NUM; i++) {
       leds[i] = getFireColor(inoise8(i * FIRE_STEP, counter), value);
     }
-    counter += 20;
-    return true;
   }
-  return false;
+
+
+  return forceRender;
 }
