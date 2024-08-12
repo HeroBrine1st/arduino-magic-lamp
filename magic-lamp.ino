@@ -29,7 +29,6 @@ Data data;
 #include <EEManager.h>
 EEManager mem(data);
 
-int prev_br;
 bool isEnabled = true;
 
 void setup() {
