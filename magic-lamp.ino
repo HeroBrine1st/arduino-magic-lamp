@@ -19,7 +19,6 @@ CRGB leds[LED_NUM];
 
 // структура настроек
 struct Data {
-  bool stateDeprecated = 1;     
   byte mode = 0;      // 0 цвет, 1 теплота, 2 огонь
   byte bright[3] = {30, 30, 30};  // яркость
   uint16_t value[3] = {0, 0, 0};      // параметр эффекта (цвет...)
