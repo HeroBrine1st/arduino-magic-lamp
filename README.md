@@ -16,7 +16,7 @@ All modes are independent in terms of brightness and hue/kelvin temperature (i.e
 
 ## "Magic" gestural control
 
-The ultrasonic rangefinder is used as button
+The ultrasonic rangefinder is used as button. When you hold something in front of it (up to 1 meter depending on size), it counts as button press.
 
 - One click - enable/disable
 - Two clicks - change mode
