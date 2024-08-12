@@ -2,6 +2,8 @@
 
 Highly refactored version of [https://kit.alexgyver.ru/tutorials/magic-lamp](https://kit.alexgyver.ru/tutorials/magic-lamp/) ([video](https://www.youtube.com/watch?v=5ySiujKswwE&t=139s) of AlexGyver's version). Supports only addressable LED strip.
 
+Schemes are available at AlexGyver's version. Basically you need to connect rangefinder, LED strip and LED (optionally) and put all that in lamp.
+
 # Features
 
 ## Three modes
