@@ -1,4 +1,4 @@
-#define DEBUG 1
+// #define DEBUG 1 // uncomment to enable debug logs on Serial (115200 baud)
 
 #define HC_ECHO 2       // пин Echo
 #define HC_TRIG 3       // пин Trig
