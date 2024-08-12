@@ -41,3 +41,9 @@ This firmware supports connecting a LED to PULSE_PIN (13 by default), which turn
 Files fireEffect.ino, gesturesEffect.ino and brightnessTask.ino have settings in start of file.
 
 There's other settings within some files, but changing those unknowingly isn't recommended.
+
+# Libraries
+
+- [VirtualButton](https://github.com/GyverLibs/VirtualButton)
+- [FastLED](https://github.com/FastLED/FastLED)
+- [EEManager](https://github.com/GyverLibs/EEManager)
