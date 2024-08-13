@@ -1,5 +1,5 @@
-bool kelvinEffect(int kelvin, bool forceRender) {
-  static int lastKelvin = 0;
+bool kelvinEffect(uint16_t kelvin, bool forceRender) {
+  static uint16_t lastKelvin = 0;
   
   if(lastKelvin != kelvin || forceRender) {
     fill_solid(leds, LED_NUM, blackBodyRadiationKelvin(kelvin));
@@ -37,7 +37,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 // цветовая температура 1000-40000К
-CRGB blackBodyRadiationKelvin(int kelvin) {
+CRGB blackBodyRadiationKelvin(uint16_t kelvin) {
   uint8_t r, g, b;
   float tmpKelvin, tmpCalc;
   kelvin = constrain(kelvin, 1000, 40000);

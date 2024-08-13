@@ -10,7 +10,7 @@ void gesturesTask() {
 
     static uint32_t tout;   // таймаут настройки (удержание)
     static int offset_d;    // оффсеты для настроек
-    static uint16_t offset_v;
+    static int offset_v;
     static bool was_hold = false;
 
     int dist = getDist(HC_TRIG, HC_ECHO); // получаем расстояние
@@ -93,6 +93,7 @@ void gesturesTask() {
             break;
           case 1:
             val = constrain(offset_v + val, 0, 1428);
+            break;
         }
       } else {
         // смещение текущей настройки как оффсет + (текущее расстояние - расстояние начала)
