@@ -1,6 +1,6 @@
 #define BRIGHTNESS_FRAME_TIME_MS 10
-#define PULSE_TOTAL_BRIGHTNESS_REDUCTION 45
-#define PULSE_ONE_FRAME_REDUCTION 3 
+#define PULSE_TOTAL_BRIGHTNESS_REDUCTION 90
+#define PULSE_ONE_FRAME_REDUCTION 6
 #define BRIGHTNESS_CROSSFADE_STEP 4
 
 bool pulseNeeded = false;
@@ -46,8 +46,8 @@ bool updateBrightnessTask() {
         animCache = 0;
       } else if (prevMode != data.mode) {
         animMode = 3;
-        if(prevMode == 255) animCache = 0;
-        else animCache = data.bright[prevMode];
+        if(prevMode != 255) animCache = data.bright[prevMode];
+        else animCache = 0;
         prevMode = data.mode;
       }
     }
@@ -64,6 +64,7 @@ bool updateBrightnessTask() {
         // Gradually lower (or brighten, depending on current brightness) current brightness by PULSE_TOTAL_BRIGHTNESS_REDUCTION
         // INITIAL REQUIREMENTS
         // animCache is set to zero
+
         if(animCache < PULSE_TOTAL_BRIGHTNESS_REDUCTION) {
           animCache += PULSE_ONE_FRAME_REDUCTION;
         } else animMode = 2;
@@ -72,6 +73,7 @@ bool updateBrightnessTask() {
         // Gradually return brightness back
         // INITIAL REQUIREMENTS
         // animCache is set to PULSE_TOTAL_BRIGHTNESS_REDUCTION
+
         if(animCache > 0) {
           animCache -= PULSE_ONE_FRAME_REDUCTION;
         } else animMode = 0;
@@ -119,11 +121,11 @@ bool updateBrightnessTask() {
   if(prevBrightness != currentBrightness) {
     prevBrightness = currentBrightness;
     #ifdef DEBUG
-      Serial.print("[Brightness task] Settings brightness to raw=");
+      Serial.print("[Brightness task] Setting brightness to raw=");
       Serial.print(currentBrightness);
     #endif
     currentBrightness = ((uint32_t)(currentBrightness + 1) * currentBrightness) >> 8; // square gamma for human eye
-    if(isEnabled) currentBrightness = max(currentBrightness, 2); // disable complete blackout
+    if(isEnabled) currentBrightness = max(currentBrightness, 2); // disallow complete blackout
     #ifdef DEBUG
       Serial.print(", actual=");
       Serial.print(currentBrightness);
