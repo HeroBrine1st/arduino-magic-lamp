@@ -21,6 +21,12 @@ bool fireEffect(uint8_t value, bool forceRender) {
   static uint32_t prevTime;
   static int counter;
 
+  if(forceRender) {
+    #ifdef DEBUG
+      Serial.println("[FireEffect] Forced render");
+    #endif
+  }
+
   // двигаем пламя
   if (millis() - prevTime > 20) {
     prevTime = millis();

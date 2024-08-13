@@ -54,32 +54,9 @@ void loop() {
   if(
     updateBrightnessTask() | // NOT A BUG, short circuit is unwanted
     renderEffect() 
-  ) FastLED.show(); 
+  ) FastLED.show();
 
   gesturesTask();
 }
 
-bool renderEffect() {
-  static uint8_t prevMode = 255; 
 
-  if(FastLED.getBrightness() == 0) return; // state is off and no animation is ongoing
-
-  bool needsOutput = false;
-
-  switch(data.mode) {
-    case 0:
-      needsOutput = hueEffect(data.value[0], prevMode != 0);
-      prevMode = 0;
-      break;
-    case 1:
-      needsOutput = kelvinEffect(data.value[1] * 28, prevMode != 1);
-      prevMode = 1;
-      break;
-    case 2:
-      needsOutput = fireEffect(data.value[2], prevMode != 2);
-      prevMode = 2;
-      break;
-  }
-
-  return needsOutput;
-}

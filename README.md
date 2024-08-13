@@ -35,6 +35,7 @@ This firmware supports connecting a LED to PULSE_PIN (13 by default), which turn
 - LED strip usage is asynchronous
 - Removed GRGB, dropped support of RGB LED strips
 - Added LED connected to PULSE_PIN, which is on when there's any signal from rangefinder
+- Add crossfade between effects using color blending (in addition to already existed smooth brightness change between effects)
 
 # Settings
 
