@@ -13,7 +13,7 @@ bool renderEffect() {
 
   if(data.mode != prevMode && prevMode != 255) {
     animOngoing = true;
-    animProgress = 0;
+    animProgress = 255;
     animPrevMode = prevMode;
 
     #ifdef DEBUG
@@ -30,7 +30,7 @@ bool renderEffect() {
   if(animOngoing) {
     
     // OPTIMIZATION: force render once, then let effect decide
-    if(renderEffectInternal(animPrevMode, animProgress == 0)) {
+    if(renderEffectInternal(animPrevMode, animProgress == 255)) {
       // If effect is rendered, copy it to buffer
       memcpy(buffer, leds, sizeof(buffer));
 
@@ -69,15 +69,15 @@ bool renderEffect() {
       // Restore current effect's last frame if needed
       if(!needsOutput) memcpy(leds, buffer2, sizeof(buffer));
 
-      if(animProgress >= 255 - EFFECT_CROSSFADE_FRAME_PROGRESS) { 
+      if(animProgress <= EFFECT_CROSSFADE_FRAME_PROGRESS) {
         animOngoing = false;
-        animProgress = 255;
+        animProgress = 0;
       } else {
-        animProgress += EFFECT_CROSSFADE_FRAME_PROGRESS;
+        animProgress -= EFFECT_CROSSFADE_FRAME_PROGRESS;
       }
 
       // At this line, `leds` contains last frame from current effect
-      nblend(leds, buffer, LED_NUM, 255 - animProgress);
+      nblend(leds, buffer, LED_NUM, animProgress);
       needsOutput = true;
       #ifdef DEBUG
         if(animOngoing) leds[0] = CRGB::White;
