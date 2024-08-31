@@ -97,7 +97,7 @@ void gesturesTask() {
         }
       } else {
         // смещение текущей настройки как оффсет + (текущее расстояние - расстояние начала)
-        val = constrain(offset_v + (dist_f - offset_d), 0, 255);
+        val = constrain(offset_v + (dist_f - offset_d), 8, 255);
       }
       
       // применяем
